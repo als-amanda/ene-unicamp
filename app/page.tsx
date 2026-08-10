@@ -8,10 +8,10 @@ const lessons = [
   { number: "03", title: "Universidade pública", text: "Caminhos, possibilidades e pertencimento para aproximar estudantes da Unicamp." },
 ];
 
-const products = [
-  { name: "Camiseta EnE", detail: "Vista a educação pública" },
-  { name: "Caneca EnE", detail: "Economia para todo dia" },
-  { name: "Ecobag EnE", detail: "Conhecimento em circulação" },
+const initialProducts = [
+  { name: "Camiseta EnE", detail: "Vista a educação pública", link: "https://www.instagram.com/ene.unicamp/" },
+  { name: "Caneca EnE", detail: "Economia para todo dia", link: "https://www.instagram.com/ene.unicamp/" },
+  { name: "Ecobag EnE", detail: "Conhecimento em circulação", link: "https://www.instagram.com/ene.unicamp/" },
 ];
 
 function Mark({ small = false }: { small?: boolean }) {
@@ -28,11 +28,18 @@ function ProjectMark() {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [products, setProducts] = useState(initialProducts);
 
   useEffect(() => {
     const reveal = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")), { threshold: 0.15 });
     document.querySelectorAll("[data-reveal]").forEach((el) => reveal.observe(el));
     return () => reveal.disconnect();
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/content/products").then((response) => response.ok ? response.json() : Promise.reject()).then((items) => {
+      if (Array.isArray(items) && items.length) setProducts(items);
+    }).catch(() => undefined);
   }, []);
 
   return (
@@ -94,7 +101,7 @@ export default function Home() {
 
       <section className="store" id="produtos">
         <div className="store-intro" data-reveal><p className="section-index section-index--light">[ 04 | PRODUTOS ENE ]</p><h2>Leve o EnE<br />com você.</h2><p>Apoie ações de educação econômica e guarde uma lembrança de um projeto que acredita na universidade pública para todos.</p><a href="https://www.instagram.com/ene.unicamp/" target="_blank" rel="noreferrer">Falar com a equipe ↗</a></div>
-        <div className="product-grid">{products.map((product, index) => <a href="https://www.instagram.com/ene.unicamp/" target="_blank" rel="noreferrer" className="product-card" key={product.name} data-reveal><div className={`product-placeholder product-placeholder--${index + 1}`}><span>FOTO EM BREVE</span><Mark small /></div><small>PRODUTO ENE</small><h3>{product.name}</h3><p>{product.detail}</p><b>Quero saber mais ↗</b></a>)}</div>
+        <div className="product-grid">{products.map((product, index) => <a href={product.link} target="_blank" rel="noreferrer" className="product-card" key={product.name} data-reveal><div className={`product-placeholder product-placeholder--${index % 3 + 1}`}><span>FOTO EM BREVE</span><Mark small /></div><small>PRODUTO ENE</small><h3>{product.name}</h3><p>{product.detail}</p><b>Quero saber mais ↗</b></a>)}</div>
       </section>
 
       <section className="inside" id="equipes">

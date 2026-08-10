@@ -2,5 +2,12 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "ene-unicamp",
   "pages_build_output_dir": "./pages-dist",
-  "compatibility_date": "2026-08-10"
+  "compatibility_date": "2026-08-10",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "ene-unicamp-cms",
+      "database_id": "70f84040-5eb3-4450-b019-76d0d7fff49e"
+    }
+  ]
 }
