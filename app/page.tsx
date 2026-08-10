@@ -64,7 +64,7 @@ export default function Home() {
           <ProjectMark />
           <span className="hero-note">Conhecimento que<br />muda de forma.</span>
         </div>
-        <div className="ticker" aria-hidden="true"><div><span>ECONOMIA • CIDADANIA • UNIVERSIDADE PÚBLICA • FUTURO • </span><span>ECONOMIA • CIDADANIA • UNIVERSIDADE PÚBLICA • FUTURO • </span></div></div>
+        <div className="ticker" aria-hidden="true"><div className="ticker-track">{[0, 1].map((group) => <div className="ticker-group" key={group}>{[0, 1, 2, 3].map((item) => <span key={item}>ECONOMIA • CIDADANIA • UNIVERSIDADE PÚBLICA • FUTURO •&nbsp;</span>)}</div>)}</div></div>
       </section>
 
       <section className="statement" id="sobre" data-reveal>
