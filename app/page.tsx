@@ -113,7 +113,6 @@ export default function Home() {
           <h2>Que tal levar o EnE<br /><em>pra sua escola?</em></h2>
           <p>Leve uma atividade do EnE para a sua escola ou construa uma parceria com o projeto.</p>
           <a className="button button--dark" href="mailto:ene@unicamp.br">Quero falar com o EnE <span>↗</span></a>
-          <small>Endereço de contato provisório. Substitua pelo e-mail oficial.</small>
         </div>
         <div className="partnership-art"><ProjectLogo /></div>
       </section>
