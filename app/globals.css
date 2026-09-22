@@ -89,3 +89,32 @@ html{scroll-padding-top:86px}
 .footer-bottom a{color:#d5d3dc}
 @media(max-width:900px){.method-heading{grid-template-columns:1fr;gap:16px}.activity-grid,.impact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-main{grid-template-columns:1fr 1fr}.site-footer .footer-institutions{grid-column:1/-1}}
 @media(max-width:560px){.method-heading h2{font-size:clamp(44px,12vw,64px)}.activity-grid,.impact-grid{grid-template-columns:1fr}.activity-card{min-height:0}.activity-card h3{margin-top:26px}.impact{padding:64px 20px}.impact-heading h2{font-size:clamp(42px,11vw,58px)}.impact-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.impact-grid article{min-height:150px;padding:14px}.impact-grid strong{font-size:37px}.impact-grid span{font-size:12px}.site-footer{text-align:center;padding:58px 20px 24px}.footer-main{grid-template-columns:1fr;gap:38px}.site-footer .footer-brand{align-items:center}.site-footer .footer-brand p{max-width:320px}.footer-links{align-items:center}.site-footer .footer-institutions{grid-column:auto;align-items:center}.site-footer .institutional-logos{grid-template-columns:75px minmax(130px,170px)}.site-footer>.footer-bottom{flex-direction:column;align-items:center;margin-top:40px}}
+
+/* Contato e rodapé, inspirados no projeto da Íris */
+.contact{padding:90px clamp(24px,8vw,130px);background:#f1f0eb;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(48px,8vw,130px);align-items:start}
+.contact h2{font-size:clamp(54px,6vw,88px);line-height:.95;text-transform:uppercase;margin:24px 0 28px}
+.contact-intro{font-size:18px;line-height:1.65;max-width:530px;margin:0 0 44px}
+.contact-details{display:grid;gap:0;max-width:540px}
+.contact-details>div{padding:20px 0;border-top:1px solid #cecdc8;display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;align-items:start}
+.contact-details span{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#6e6c70}
+.contact-details a,.contact-details p{font-size:14px;font-weight:700;line-height:1.65;overflow-wrap:anywhere;margin:0}
+.contact-details a:hover{color:#c45e00}
+.contact-form{background:white;border:1px solid #deddd8;border-radius:18px;padding:clamp(24px,3.2vw,46px);display:flex;flex-direction:column;box-shadow:12px 12px 0 #e5e3dd}
+.contact-form h3{font-size:clamp(31px,3vw,42px);line-height:1;margin:0 0 30px}
+.contact-form label{font-size:12px;font-weight:800;margin:0 0 8px}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;background:#f7f6f2;border:1px solid #d5d3d0;border-radius:6px;padding:13px 14px;font-family:"Montserrat",sans-serif;font-size:14px;color:var(--ink);outline:none;margin-bottom:20px}
+.contact-form textarea{resize:vertical;min-height:130px}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:#d46d0b;box-shadow:0 0 0 3px rgba(255,133,23,.18)}
+.contact-form .button{width:100%;margin-top:4px;box-shadow:none;border-radius:6px}
+.contact-form .button:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--ink)}
+.contact-form-note{font-size:11px;line-height:1.5;color:#66646a;margin:16px 0 0}
+.site-footer{padding-top:64px;padding-bottom:26px}
+.footer-main{grid-template-columns:1.3fr .7fr 1fr;gap:clamp(32px,5vw,80px);align-items:start}
+.site-footer .footer-brand{align-items:flex-start}
+.site-footer .footer-brand p{font-size:14px;line-height:1.65}
+.site-footer .footer-institutions{align-items:flex-start}
+.site-footer .footer-institutions>span{color:#aaa8b1;font-size:11px;line-height:1.5}
+.site-footer .institutional-logos{grid-template-columns:75px minmax(150px,1fr);align-items:center}
+.site-footer>.footer-bottom{margin-top:56px;padding-top:24px}
+@media(max-width:900px){.contact{grid-template-columns:1fr;gap:46px;padding-top:70px;padding-bottom:70px}.footer-main{grid-template-columns:1fr 1fr}.site-footer .footer-institutions{grid-column:1/-1}}
+@media(max-width:560px){.contact{padding:58px 20px;gap:32px}.contact h2{font-size:52px}.contact-intro{font-size:16px;margin-bottom:28px}.contact-details>div{grid-template-columns:1fr;gap:5px;padding:15px 0}.contact-form{padding:24px;box-shadow:6px 6px 0 #e5e3dd}.contact-form h3{font-size:34px}.footer-main{grid-template-columns:1fr;gap:36px}.site-footer .footer-brand,.site-footer .footer-institutions{align-items:center}.site-footer .footer-institutions{grid-column:auto}.site-footer>.footer-bottom{margin-top:40px}}

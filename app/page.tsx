@@ -10,25 +10,6 @@ const activities = [
   { number: "05", title: "Projeto Cartilha", text: "Material físico e digital de fácil acesso para apoiar a reflexão sobre economia, inclusive em sala de aula." },
 ];
 
-const impact = [
-  { value: "25+", label: "Membros na equipe" },
-  { value: "19", label: "Edições do Clube de Leitura" },
-  { value: "50+", label: "Cartilhas distribuídas" },
-  { value: "14 mil+", label: "Contas alcançadas" },
-  { value: "~4 mil", label: "Seguidores" },
-  { value: "2", label: "Escolas atendidas" },
-];
-
-const initialProducts = [
-  { name: "Camiseta EnE", detail: "Vista a educação pública", link: "https://www.instagram.com/ene.unicamp/" },
-  { name: "Caneca EnE", detail: "Economia para todo dia", link: "https://www.instagram.com/ene.unicamp/" },
-  { name: "Ecobag EnE", detail: "Conhecimento em circulação", link: "https://www.instagram.com/ene.unicamp/" },
-];
-
-function Mark({ small = false }: { small?: boolean }) {
-  return <span className={`mark ${small ? "mark--small" : ""}`} aria-hidden="true"><i /><i /><i /><i /></span>;
-}
-
 function ProjectLogo({ compact = false }: { compact?: boolean }) {
   return <img className={`project-logo ${compact ? "project-logo--compact" : ""}`} src="/ene-logo.png" alt="EnE, Economia nas Escolas" />;
 }
@@ -39,7 +20,7 @@ function ProjectMark() {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [products, setProducts] = useState(initialProducts);
+  const [emailNotice, setEmailNotice] = useState(false);
 
   useEffect(() => {
     const reveal = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")), { threshold: 0.15 });
@@ -47,11 +28,17 @@ export default function Home() {
     return () => reveal.disconnect();
   }, []);
 
-  useEffect(() => {
-    fetch("/api/content/products").then((response) => response.ok ? response.json() : Promise.reject()).then((items) => {
-      if (Array.isArray(items) && items.length) setProducts(items);
-    }).catch(() => undefined);
-  }, []);
+  function sendContact(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const subject = String(data.get("subject") || "").trim();
+    const message = String(data.get("message") || "").trim();
+    const body = `Nome: ${name}\nE-mail: ${email}\nAssunto: ${subject}\n\n${message}`;
+    setEmailNotice(true);
+    window.location.href = `mailto:economianasescolas@unicamp.br?subject=${encodeURIComponent(`[Site EnE] ${subject}`)}&body=${encodeURIComponent(body)}`;
+  }
 
   return (
     <main>
@@ -61,10 +48,8 @@ export default function Home() {
         <nav className={menuOpen ? "nav-links is-open" : "nav-links"} aria-label="Navegação principal">
           <a href="#sobre" onClick={() => setMenuOpen(false)}>O projeto</a>
           <a href="#projeto" onClick={() => setMenuOpen(false)}>Atuação</a>
-          <a href="#impacto" onClick={() => setMenuOpen(false)}>Impacto</a>
           <a href="#equipes" onClick={() => setMenuOpen(false)}>Equipes</a>
-          <a href="#eventos" onClick={() => setMenuOpen(false)}>Eventos</a>
-          <a className="nav-cta" href="#parceria" onClick={() => setMenuOpen(false)}>Leve o EnE à sua escola <span>↗</span></a>
+          <a className="nav-cta" href="#contato" onClick={() => setMenuOpen(false)}>Leve o EnE à sua escola <span>↗</span></a>
         </nav>
       </header>
 
@@ -106,49 +91,44 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="impact" id="impacto">
-        <div className="impact-heading" data-reveal>
-          <p className="section-index section-index--light">[ 03 | NOSSO IMPACTO ]</p>
-          <h2>Transformando números em <em>cidadania.</em></h2>
-          <p>Resultados consolidados em 2023 que mostram o alcance das nossas atividades de educação econômica.</p>
-        </div>
-        <div className="impact-grid">
-          {impact.map((item) => <article key={item.label} data-reveal><strong>{item.value}</strong><span>{item.label}</span></article>)}
-        </div>
-      </section>
-
-      <section className="store" id="produtos">
-        <div className="store-intro" data-reveal><p className="section-index section-index--light">[ 04 | PRODUTOS ENE ]</p><h2>Leve o EnE<br />com você.</h2><p>Apoie ações de educação econômica e guarde uma lembrança de um projeto que acredita na universidade pública para todos.</p><a href="https://www.instagram.com/ene.unicamp/" target="_blank" rel="noreferrer">Falar com a equipe ↗</a></div>
-        <div className="product-grid">{products.map((product, index) => <a href={product.link} target="_blank" rel="noreferrer" className="product-card" key={product.name} data-reveal><div className={`product-placeholder product-placeholder--${index % 3 + 1}`}><span>FOTO EM BREVE</span><Mark small /></div><small>PRODUTO ENE</small><h3>{product.name}</h3><p>{product.detail}</p><b>Quero saber mais ↗</b></a>)}</div>
-      </section>
-
       <section className="inside" id="equipes">
-        <div className="inside-heading" data-reveal><p className="section-index">[ 05 | EQUIPES ]</p><h2>EnE por dentro.</h2><p>O projeto nasceu de uma assembleia estudantil em 2018 e é construído coletivamente por diferentes áreas.</p></div>
+        <div className="inside-heading" data-reveal><p className="section-index">[ 03 | EQUIPES ]</p><h2>EnE por dentro.</h2><p>O projeto nasceu de uma assembleia estudantil em 2018 e é construído coletivamente por diferentes áreas.</p></div>
         <div className="inside-grid">{["Administração","Conteúdo","Marketing","Financeiro","Recursos Humanos"].map((team, index) => <article key={team} data-reveal><span>0{index + 1}</span><h3>{team}</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Em breve, conheça as pessoas e atividades desta equipe.</p></article>)}</div>
       </section>
 
-      <section className="events" id="eventos">
-        <div data-reveal><p className="section-index section-index--light">[ 06 | EVENTOS ]</p><h2>Próximos encontros.</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Em breve, esta área reunirá aulas abertas, visitas, formações e atividades do EnE.</p></div>
-        <div className="event-placeholder" data-reveal><span>EM BREVE</span><h3>Novos eventos serão publicados aqui</h3><p>Acompanhe nossas redes para não perder as próximas atividades.</p><a href="https://www.instagram.com/ene.unicamp/" target="_blank" rel="noreferrer">Seguir no Instagram ↗</a></div>
-      </section>
-
-      <section className="partnership" id="parceria">
-        <div className="partnership-copy" data-reveal>
-          <p className="eyebrow eyebrow--dark"><span /> Para escolas e educadores</p>
-          <h2>Que tal levar o EnE<br /><em>pra sua escola?</em></h2>
-          <p>Leve uma atividade do EnE para a sua escola ou construa uma parceria com o projeto.</p>
-          <a className="button button--dark" href="mailto:ene@unicamp.br">Quero falar com o EnE <span>↗</span></a>
+      <section className="contact" id="contato">
+        <div className="contact-info" data-reveal>
+          <p className="section-index">[ 04 | CONTATO ]</p>
+          <h2>Fale conosco.</h2>
+          <p className="contact-intro">Tem dúvidas, sugestões ou quer ser nosso parceiro? Entre em contato conosco.</p>
+          <div className="contact-details">
+            <div><span>E-mail</span><a href="mailto:economianasescolas@unicamp.br">economianasescolas@unicamp.br ↗</a></div>
+            <div><span>Instagram</span><a href="https://www.instagram.com/ene.unicamp/" target="_blank" rel="noreferrer">@ene.unicamp ↗</a></div>
+            <div><span>Localização</span><p>Instituto de Economia, UNICAMP<br />Rua Pitágoras, 353, Cidade Universitária<br />Campinas, SP</p></div>
+          </div>
         </div>
-        <div className="partnership-art"><ProjectLogo /></div>
+        <form className="contact-form" onSubmit={sendContact} data-reveal>
+          <h3>Envie uma mensagem</h3>
+          <label htmlFor="contact-name">Nome completo</label>
+          <input id="contact-name" name="name" type="text" autoComplete="name" required />
+          <label htmlFor="contact-email">E-mail</label>
+          <input id="contact-email" name="email" type="email" autoComplete="email" required />
+          <label htmlFor="contact-subject">Assunto</label>
+          <select id="contact-subject" name="subject" defaultValue="" required><option value="" disabled>Selecione um assunto</option><option>Dúvida geral</option><option>Quero ser uma escola parceira</option><option>Processo seletivo</option><option>Imprensa</option></select>
+          <label htmlFor="contact-message">Mensagem</label>
+          <textarea id="contact-message" name="message" rows={5} required />
+          <button className="button button--primary" type="submit">Enviar mensagem <span>↗</span></button>
+          <p className="contact-form-note" role="status">{emailNotice ? "Seu aplicativo de e-mail será aberto para revisar e enviar a mensagem." : "Ao enviar, seu aplicativo de e-mail será aberto para você revisar a mensagem."}</p>
+        </form>
       </section>
 
       <footer className="site-footer">
         <div className="footer-main">
           <div className="footer-brand"><a className="brand brand--footer brand--official" href="#inicio"><ProjectLogo /></a><p>Projeto de extensão universitária do Instituto de Economia da Unicamp.</p></div>
-          <nav className="footer-links" aria-label="Links rápidos"><h2>Links rápidos</h2><a href="#sobre">Sobre</a><a href="#projeto">Atuação</a><a href="#impacto">Impacto</a><a href="#eventos">Eventos</a><a href="#parceria">Contato</a></nav>
-          <div className="footer-institutions"><span>REALIZAÇÃO</span><div className="institutional-logos" aria-label="Realização"><img src="/unicamp-white.gif" alt="Universidade Estadual de Campinas" /><img src="/ie-white.png" alt="Instituto de Economia da Unicamp" /></div></div>
+          <nav className="footer-links" aria-label="Links rápidos"><h2>Links rápidos</h2><a href="#sobre">Sobre</a><a href="#projeto">Atuação</a><a href="#equipes">Equipes</a><a href="#contato">Contato</a></nav>
+          <div className="footer-institutions"><span>UNICAMP · INSTITUTO DE ECONOMIA</span><div className="institutional-logos" aria-label="Realização"><img src="/unicamp-white.gif" alt="Universidade Estadual de Campinas" /><img src="/ie-white.png" alt="Instituto de Economia da Unicamp" /></div></div>
         </div>
-        <div className="footer-bottom"><span>© {new Date().getFullYear()} Economia nas Escolas</span><a href="https://www.instagram.com/ene.unicamp/" target="_blank" rel="noreferrer">Instagram ↗</a></div>
+        <div className="footer-bottom"><span>© {new Date().getFullYear()} Economia nas Escolas. Todos os direitos reservados.</span></div>
       </footer>
     </main>
   );
