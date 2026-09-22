@@ -118,3 +118,39 @@ html{scroll-padding-top:86px}
 .site-footer>.footer-bottom{margin-top:56px;padding-top:24px}
 @media(max-width:900px){.contact{grid-template-columns:1fr;gap:46px;padding-top:70px;padding-bottom:70px}.footer-main{grid-template-columns:1fr 1fr}.site-footer .footer-institutions{grid-column:1/-1}}
 @media(max-width:560px){.contact{padding:58px 20px;gap:32px}.contact h2{font-size:52px}.contact-intro{font-size:16px;margin-bottom:28px}.contact-details>div{grid-template-columns:1fr;gap:5px;padding:15px 0}.contact-form{padding:24px;box-shadow:6px 6px 0 #e5e3dd}.contact-form h3{font-size:34px}.footer-main{grid-template-columns:1fr;gap:36px}.site-footer .footer-brand,.site-footer .footer-institutions{align-items:center}.site-footer .footer-institutions{grid-column:auto}.site-footer>.footer-bottom{margin-top:40px}}
+
+/* Sobre o EnE e caminho para escolas */
+.hero h1{position:relative;isolation:isolate}
+.scribble-target{z-index:0}
+.scribble-ring{inset:8% -3% 2% -4%;z-index:-1}
+.about{padding:90px clamp(24px,8vw,130px);background:#f7f6f2}
+.about-heading{display:grid;grid-template-columns:1fr 3fr;gap:30px;align-items:start;margin-bottom:38px}
+.about-heading h2{font-size:clamp(48px,5.6vw,84px);line-height:.98;text-transform:uppercase;margin:0;max-width:900px}
+.about-heading h2 span{color:#d96909}
+.about-copy{max-width:890px;margin-left:auto;display:grid;gap:16px}
+.about-copy p{font-size:16px;line-height:1.8;margin:0}
+.about-copy strong{font-weight:800}
+.principles{border-top:1px solid var(--ink);margin-top:62px;padding-top:42px;display:grid;grid-template-columns:1fr 1.6fr;gap:clamp(40px,7vw,100px)}
+.principles h3{font-size:clamp(36px,4vw,56px);text-transform:uppercase;line-height:1;margin:0 0 18px}
+.principles-heading p{font-size:15px;line-height:1.7;max-width:470px;margin:0}
+.principles ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.principles li{background:#eeede7;border:1px solid #dfddd6;padding:20px;font-family:"Lilita One",sans-serif;font-size:24px;display:flex;gap:16px;align-items:center;min-width:0}
+.principles li span{font-family:"Montserrat",sans-serif;font-size:11px;font-weight:800;color:#d96909}
+.school{background:var(--ink);color:white;padding:90px clamp(24px,8vw,130px)}
+.school-heading{display:grid;grid-template-columns:1fr 2fr 1fr;gap:30px;align-items:start;margin-bottom:44px}
+.school h2{font-size:clamp(48px,5.4vw,80px);line-height:.98;text-transform:uppercase;margin:0}
+.school-heading>span{font-family:"Lilita One",sans-serif;font-size:clamp(24px,2.4vw,34px);line-height:1.1;text-transform:uppercase;max-width:245px}
+.school-heading>span em{color:var(--orange);font-style:normal}
+.school-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.school-steps article{background:#24232c;border:1px solid #3a3843;border-radius:18px;padding:28px;min-height:365px}
+.school-step-number{display:block;color:var(--orange);font-size:12px;font-weight:800;letter-spacing:.12em;margin-bottom:42px}
+.school-steps p,.school-steps li{font-size:15px;line-height:1.65;color:#e1dfe5}
+.school-steps p{margin:0 0 20px}
+.school-steps strong{color:white;font-weight:800}
+.school-steps ul{list-style:none;padding:0;margin:0}
+.school-steps li{padding-left:20px;position:relative;margin:9px 0}
+.school-steps li:before{content:">";position:absolute;left:0;color:var(--orange);font-weight:800}
+.school-cta{margin-top:34px}
+@media(max-width:1000px){.school-heading{grid-template-columns:1fr 2fr}.school-heading>span{grid-column:2}.school-steps{grid-template-columns:1fr}.school-steps article{min-height:0}.school-step-number{margin-bottom:25px}}
+@media(max-width:900px){.about{padding-top:70px;padding-bottom:70px}.about-heading{grid-template-columns:1fr}.about-copy{max-width:none}.principles{grid-template-columns:1fr}.school{padding-top:70px;padding-bottom:70px}}
+@media(max-width:560px){.about,.school{padding:58px 20px}.about-heading h2,.school h2{font-size:clamp(44px,11vw,60px)}.about-copy p{font-size:15px}.principles{margin-top:44px;padding-top:34px;gap:28px}.principles ul{grid-template-columns:1fr}.principles li{font-size:23px}.school-heading{grid-template-columns:1fr;gap:18px}.school-heading>span{grid-column:auto;max-width:none}.school-steps article{padding:24px}.school-steps p,.school-steps li{font-size:14px}}
