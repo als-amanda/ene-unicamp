@@ -137,11 +137,23 @@ export default function Home() {
         </form>
       </section>
 
+      <section className="institutional-support" aria-labelledby="institutional-support-title">
+        <div className="institutional-support-heading" data-reveal>
+          <p className="section-index">[ APOIO INSTITUCIONAL ]</p>
+          <h2 id="institutional-support-title">Apoio institucional.</h2>
+        </div>
+        <div className="institutional-support-logos" data-reveal>
+          <div className="support-logo support-logo--unicamp"><img src="/unicamp-white.gif" alt="Unicamp" loading="lazy" /></div>
+          <div className="support-logo support-logo--ie"><img src="/ie-color.svg" alt="Instituto de Economia da Unicamp" loading="lazy" /></div>
+          <div className="support-logo support-logo--proec"><img src="/proec.png" alt="Pró-Reitoria de Extensão e Cultura da Unicamp, PROEC" loading="lazy" /></div>
+        </div>
+      </section>
+
       <footer className="site-footer">
         <div className="footer-main">
           <div className="footer-brand"><a className="brand brand--footer brand--official" href="#inicio"><ProjectLogo /></a><p>Projeto de extensão universitária do Instituto de Economia da Unicamp.</p></div>
           <nav className="footer-links" aria-label="Links rápidos"><h2>Links rápidos</h2><a href="#sobre">Sobre</a><a href="#projeto">Atuação</a><a href="#equipes">Equipes</a><a href="#escolas">Para escolas</a><a href="#contato">Contato</a></nav>
-          <div className="footer-institutions"><span>UNICAMP · INSTITUTO DE ECONOMIA</span><div className="institutional-logos" aria-label="Realização"><img src="/unicamp-white.gif" alt="Universidade Estadual de Campinas" /><img src="/ie-white.png" alt="Instituto de Economia da Unicamp" /></div></div>
+          <div className="footer-institutions"><span>UNICAMP · INSTITUTO DE ECONOMIA</span></div>
         </div>
         <div className="footer-bottom"><span>© {new Date().getFullYear()} Economia nas Escolas. Todos os direitos reservados.</span></div>
       </footer>

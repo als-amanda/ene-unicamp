@@ -154,3 +154,19 @@ html{scroll-padding-top:86px}
 @media(max-width:1000px){.school-heading{grid-template-columns:1fr 2fr}.school-heading>span{grid-column:2}.school-steps{grid-template-columns:1fr}.school-steps article{min-height:0}.school-step-number{margin-bottom:25px}}
 @media(max-width:900px){.about{padding-top:70px;padding-bottom:70px}.about-heading{grid-template-columns:1fr}.about-copy{max-width:none}.principles{grid-template-columns:1fr}.school{padding-top:70px;padding-bottom:70px}}
 @media(max-width:560px){.about,.school{padding:58px 20px}.about-heading h2,.school h2{font-size:clamp(44px,11vw,60px)}.about-copy p{font-size:15px}.principles{margin-top:44px;padding-top:34px;gap:28px}.principles ul{grid-template-columns:1fr}.principles li{font-size:23px}.school-heading{grid-template-columns:1fr;gap:18px}.school-heading>span{grid-column:auto;max-width:none}.school-steps article{padding:24px}.school-steps p,.school-steps li{font-size:14px}}
+
+/* Marcas das instituições que apoiam o projeto */
+.institutional-support{background:#f7f6f2;padding:76px clamp(24px,8vw,130px) 90px}
+.institutional-support-heading{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:32px}
+.institutional-support-heading h2{font-size:clamp(42px,5vw,72px);line-height:1;text-transform:uppercase;margin:0}
+.institutional-support-logos{display:grid;grid-template-columns:1fr 1fr 1.35fr;gap:16px}
+.support-logo{min-height:190px;padding:30px;display:flex;align-items:center;justify-content:center;background:white;border:1px solid #e1dfd9}
+.support-logo img{display:block;max-width:100%;max-height:130px;object-fit:contain}
+.support-logo--unicamp{background:var(--ink);border-color:var(--ink)}
+.support-logo--unicamp img{width:142px;max-height:142px}
+.support-logo--ie img{width:260px}
+.support-logo--proec img{width:340px}
+.site-footer .footer-institutions{align-items:flex-end}
+.site-footer .footer-institutions>span{max-width:190px;text-align:right;font-size:12px;line-height:1.6}
+@media(max-width:900px){.institutional-support-heading{align-items:start;flex-direction:column}.institutional-support-logos{grid-template-columns:repeat(2,minmax(0,1fr))}.support-logo--proec{grid-column:1/-1}.site-footer .footer-institutions{align-items:flex-start}.site-footer .footer-institutions>span{text-align:left}}
+@media(max-width:560px){.institutional-support{padding:58px 20px 68px}.institutional-support-heading h2{font-size:clamp(40px,11vw,56px)}.institutional-support-logos{grid-template-columns:1fr}.support-logo{min-height:155px}.support-logo--proec{grid-column:auto}.site-footer .footer-institutions{align-items:center}.site-footer .footer-institutions>span{text-align:center}}
