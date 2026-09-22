@@ -170,3 +170,20 @@ html{scroll-padding-top:86px}
 .site-footer .footer-institutions>span{max-width:190px;text-align:right;font-size:12px;line-height:1.6}
 @media(max-width:900px){.institutional-support-heading{align-items:start;flex-direction:column}.institutional-support-logos{grid-template-columns:repeat(2,minmax(0,1fr))}.support-logo--proec{grid-column:1/-1}.site-footer .footer-institutions{align-items:flex-start}.site-footer .footer-institutions>span{text-align:left}}
 @media(max-width:560px){.institutional-support{padding:58px 20px 68px}.institutional-support-heading h2{font-size:clamp(40px,11vw,56px)}.institutional-support-logos{grid-template-columns:1fr}.support-logo{min-height:155px}.support-logo--proec{grid-column:auto}.site-footer .footer-institutions{align-items:center}.site-footer .footer-institutions>span{text-align:center}}
+
+/* Navegação completa e princípios com ícones */
+.nav-shell{padding-inline:clamp(24px,3vw,50px)}
+.project-logo--compact{width:170px}
+.nav-links{gap:clamp(11px,1.35vw,20px);font-size:11px;white-space:nowrap}
+.nav-cta{gap:12px;padding:13px 15px}
+.principles li{gap:12px;padding:16px;overflow:hidden}
+.principles li .principle-icon{width:42px;height:42px;flex:none;border:1px solid #e6e3dc;border-radius:11px;background:white;display:grid;place-items:center;color:#df790f;box-shadow:0 2px 4px rgba(15,14,23,.06)}
+.principle-icon svg{width:23px;height:23px}
+.principles li .principle-name{font-family:"Montserrat",sans-serif;font-size:clamp(15px,1.2vw,17px);font-weight:800;line-height:1.3;min-width:0;overflow-wrap:anywhere;color:var(--ink)}
+.school-heading{grid-template-columns:1fr 3fr}
+.school h2{font-size:clamp(52px,6vw,84px)}
+.school-steps p,.school-steps li{font-size:18px;line-height:1.6}
+@media(max-width:1200px){.principles{grid-template-columns:1fr}}
+@media(max-width:1050px){.menu-button{display:block;z-index:2}.nav-links{position:absolute;top:72px;left:0;right:0;display:none;flex-direction:column;align-items:stretch;gap:0;padding:14px 24px 24px;max-height:calc(100dvh - 72px);overflow-y:auto;background:var(--ink);color:white;box-shadow:0 18px 30px rgba(0,0,0,.18);font-size:14px;white-space:normal}.nav-links.is-open{display:flex}.nav-links>a:not(.nav-cta){padding:12px 0;border-bottom:1px solid #34333e}.nav-links .nav-cta{margin-top:16px;justify-content:space-between}.nav-shell{height:72px}}
+@media(max-width:700px){.principles ul{grid-template-columns:1fr}.principles li .principle-name{font-size:17px}}
+@media(max-width:560px){.school-heading{grid-template-columns:1fr}.school h2{font-size:clamp(44px,11vw,60px)}.school-steps p,.school-steps li{font-size:17px}.principles li{padding:14px}}

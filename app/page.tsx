@@ -18,6 +18,18 @@ function ProjectMark() {
   return <span className="official-mark" aria-label="Símbolo do lobo-guará do EnE"><img src="/ene-logo.png" alt="" /></span>;
 }
 
+function PrincipleIcon({ index }: { index: number }) {
+  const paths = [
+    <><circle cx="9" cy="8" r="3" /><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m1 4a5 5 0 0 1 3 5" /></>,
+    <><path d="M12 21s-8-4.9-8-10.5a4.5 4.5 0 0 1 8-2.8 4.5 4.5 0 0 1 8 2.8C20 16.1 12 21 12 21Z" /></>,
+    <><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12Z" /><circle cx="12" cy="12" r="2.5" /></>,
+    <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></>,
+    <><circle cx="8" cy="8" r="3" /><path d="M2 20v-2a6 6 0 0 1 12 0v2M18 7v8m-4-4h8" /></>,
+    <><path d="m12 2 1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7L12 2Zm7 14 .7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z" /></>,
+  ];
+  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[index]}</svg>;
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -42,11 +54,15 @@ export default function Home() {
     <main>
       <header className="nav-shell">
         <a className="brand brand--official" href="#inicio" aria-label="EnE - início"><ProjectLogo compact /></a>
-        <button className="menu-button" aria-label="Abrir menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><span /><span /></button>
+        <button className="menu-button" aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><span /><span /></button>
         <nav className={menuOpen ? "nav-links is-open" : "nav-links"} aria-label="Navegação principal">
-          <a href="#sobre" onClick={() => setMenuOpen(false)}>O projeto</a>
+          <a href="#inicio" onClick={() => setMenuOpen(false)}>Início</a>
+          <a href="#sobre" onClick={() => setMenuOpen(false)}>Sobre</a>
           <a href="#projeto" onClick={() => setMenuOpen(false)}>Atuação</a>
           <a href="#equipes" onClick={() => setMenuOpen(false)}>Equipes</a>
+          <a href="#escolas" onClick={() => setMenuOpen(false)}>Para escolas</a>
+          <a href="#contato" onClick={() => setMenuOpen(false)}>Contato</a>
+          <a href="#apoio" onClick={() => setMenuOpen(false)}>Apoio</a>
           <a className="nav-cta" href="#escolas" onClick={() => setMenuOpen(false)}>Leve o EnE à sua escola <span>↗</span></a>
         </nav>
       </header>
@@ -82,7 +98,7 @@ export default function Home() {
         </div>
         <div className="principles" data-reveal>
           <div className="principles-heading"><h3>Nossos princípios</h3><p>O EnE é formado por estudantes comprometidos com a extensão universitária e com a democratização do conhecimento. Em nossas atividades, valorizamos princípios que orientam tanto nossas decisões internas quanto nossa relação com a sociedade:</p></div>
-          <ul>{["Horizontalidade", "Respeito", "Transparência", "Autorresponsabilidade", "Inclusividade", "Empatia"].map((principle, index) => <li key={principle}><span>0{index + 1}</span>{principle}</li>)}</ul>
+          <ul>{["Horizontalidade", "Respeito", "Transparência", "Autorresponsabilidade", "Inclusividade", "Empatia"].map((principle, index) => <li key={principle}><span className="principle-icon"><PrincipleIcon index={index} /></span><span className="principle-name">{principle}</span></li>)}</ul>
         </div>
       </section>
 
@@ -103,7 +119,7 @@ export default function Home() {
       </section>
 
       <section className="school" id="escolas">
-        <div className="school-heading" data-reveal><p className="section-index section-index--light">[ 04 | PARA ESCOLAS ]</p><h2>Como levar o EnE<br />pra sua escola?</h2><span>Um contato pode mudar <em>tudo.</em></span></div>
+        <div className="school-heading" data-reveal><p className="section-index section-index--light">[ 04 | PARA ESCOLAS ]</p><h2>Como levar o EnE<br />pra sua escola?</h2></div>
         <div className="school-steps">
           <article data-reveal><span className="school-step-number">01</span><p>Geralmente, somos nós que entramos em contato com escolas públicas da região. No entanto, <strong>sempre estamos abertos para novas oportunidades!</strong></p><p>Se você é <strong>gestor, professor e/ou funcionário</strong> de alguma <strong>escola pública</strong> de Campinas e região, basta entrar em contato por aqui e agendar um bate-papo!</p></article>
           <article data-reveal><span className="school-step-number">02</span><p>No bate-papo, poderemos entender a <strong>realidade da sua escola.</strong> Isto é:</p><ul><li>Quais disciplinas são mais necessárias?</li><li>Quantas e quais turmas participarão?</li><li>É uma ação pontual? Ou aulas recorrentes?</li></ul></article>
@@ -137,7 +153,7 @@ export default function Home() {
         </form>
       </section>
 
-      <section className="institutional-support" aria-labelledby="institutional-support-title">
+      <section className="institutional-support" id="apoio" aria-labelledby="institutional-support-title">
         <div className="institutional-support-heading" data-reveal>
           <p className="section-index">[ APOIO INSTITUCIONAL ]</p>
           <h2 id="institutional-support-title">Apoio institucional.</h2>
