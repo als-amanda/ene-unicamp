@@ -30,6 +30,10 @@ function PrincipleIcon({ index }: { index: number }) {
   return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[index]}</svg>;
 }
 
+function ContactIcon({ kind }: { kind: "email" | "instagram" | "location" }) {
+  return <span className="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{kind === "email" ? <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></> : kind === "instagram" ? <><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none" /></> : <><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></>}</svg></span>;
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -129,28 +133,28 @@ export default function Home() {
       </section>
 
       <section className="contact" id="contato">
-        <div className="contact-info" data-reveal>
-          <p className="section-index">[ 05 | CONTATO ]</p>
-          <h2>Fale conosco.</h2>
-          <p className="contact-intro">Tem dúvidas, sugestões ou quer ser uma escola parceira? Entre em contato conosco.</p>
-          <div className="contact-details">
-            <div><span>E-mail</span><a href="mailto:economianasescolas@unicamp.br">economianasescolas@unicamp.br ↗</a></div>
-            <div><span>Instagram</span><a href="https://www.instagram.com/ene.unicamp/" target="_blank" rel="noreferrer">@ene.unicamp ↗</a></div>
-            <div><span>Localização</span><p>Instituto de Economia, UNICAMP<br />Rua Pitágoras, 353, Cidade Universitária<br />Campinas, SP</p></div>
+        <div className="contact-card" data-reveal>
+          <div className="contact-info">
+            <p className="section-index section-index--light">[ 05 | CONTATO ]</p>
+            <h2>Fale conosco</h2>
+            <p className="contact-intro">Tem dúvidas, sugestões ou quer ser uma escola parceira? Entre em contato conosco.</p>
+            <div className="contact-details">
+              <div><ContactIcon kind="email" /><div><span>E-mail</span><a href="mailto:economianasescolas@unicamp.br">economianasescolas@unicamp.br</a></div></div>
+              <div><ContactIcon kind="instagram" /><div><span>Instagram</span><a href="https://www.instagram.com/ene.unicamp/" target="_blank" rel="noreferrer">@ene.unicamp</a></div></div>
+              <div><ContactIcon kind="location" /><div><span>Localização</span><p>Instituto de Economia, UNICAMP<br />Rua Pitágoras, 353, Cidade Universitária<br />Campinas, SP</p></div></div>
+            </div>
           </div>
+          <form className="contact-form" onSubmit={sendContact}>
+            <h3>Envie uma mensagem</h3>
+            <div className="contact-form-row">
+              <div className="contact-field"><label htmlFor="contact-name">Nome completo</label><input id="contact-name" name="name" type="text" autoComplete="name" placeholder="Seu nome" required /></div>
+              <div className="contact-field"><label htmlFor="contact-email">E-mail</label><input id="contact-email" name="email" type="email" autoComplete="email" placeholder="voce@exemplo.com" required /></div>
+            </div>
+            <div className="contact-field"><label htmlFor="contact-subject">Assunto</label><select id="contact-subject" name="subject" defaultValue="" required><option value="" disabled>Selecione um assunto</option><option>Dúvida geral</option><option>Quero ser uma escola parceira</option><option>Processo seletivo</option><option>Imprensa</option></select></div>
+            <div className="contact-field"><label htmlFor="contact-message">Mensagem</label><textarea id="contact-message" name="message" rows={5} placeholder="Escreva sua mensagem aqui..." required /></div>
+            <button className="button button--primary" type="submit">Enviar mensagem <span>↗</span></button>
+          </form>
         </div>
-        <form className="contact-form" onSubmit={sendContact} data-reveal>
-          <h3>Envie uma mensagem</h3>
-          <label htmlFor="contact-name">Nome completo</label>
-          <input id="contact-name" name="name" type="text" autoComplete="name" required />
-          <label htmlFor="contact-email">E-mail</label>
-          <input id="contact-email" name="email" type="email" autoComplete="email" required />
-          <label htmlFor="contact-subject">Assunto</label>
-          <select id="contact-subject" name="subject" defaultValue="" required><option value="" disabled>Selecione um assunto</option><option>Dúvida geral</option><option>Quero ser uma escola parceira</option><option>Processo seletivo</option><option>Imprensa</option></select>
-          <label htmlFor="contact-message">Mensagem</label>
-          <textarea id="contact-message" name="message" rows={5} required />
-          <button className="button button--primary" type="submit">Enviar mensagem <span>↗</span></button>
-        </form>
       </section>
 
       <section className="institutional-support" id="apoio" aria-labelledby="institutional-support-title">
@@ -159,7 +163,7 @@ export default function Home() {
           <h2 id="institutional-support-title">Apoio institucional.</h2>
         </div>
         <div className="institutional-support-logos" data-reveal>
-          <div className="support-logo support-logo--unicamp"><img src="/unicamp-white.gif" alt="Unicamp" loading="lazy" /></div>
+          <div className="support-logo support-logo--unicamp"><img src="/unicamp-color.png" alt="Unicamp" loading="lazy" /></div>
           <div className="support-logo support-logo--ie"><img src="/ie-color.svg" alt="Instituto de Economia da Unicamp" loading="lazy" /></div>
           <div className="support-logo support-logo--proec"><img src="/proec.png" alt="Pró-Reitoria de Extensão e Cultura da Unicamp, PROEC" loading="lazy" /></div>
         </div>
@@ -171,7 +175,7 @@ export default function Home() {
           <nav className="footer-links" aria-label="Links rápidos"><h2>Links rápidos</h2><a href="#sobre">Sobre</a><a href="#projeto">Atuação</a><a href="#equipes">Equipes</a><a href="#escolas">Para escolas</a><a href="#contato">Contato</a></nav>
           <div className="footer-institutions"><span>UNICAMP · INSTITUTO DE ECONOMIA</span></div>
         </div>
-        <div className="footer-bottom"><span>© {new Date().getFullYear()} Economia nas Escolas. Todos os direitos reservados.</span></div>
+        <div className="footer-bottom"><span>© 2026 Economia nas Escolas. Todos os direitos reservados.</span></div>
       </footer>
     </main>
   );
