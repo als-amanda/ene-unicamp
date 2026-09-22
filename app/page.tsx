@@ -2,10 +2,21 @@
 
 import { useEffect, useState } from "react";
 
-const lessons = [
-  { number: "01", title: "Economia no cotidiano", text: "Inflação, renda e escolhas explicadas a partir do que já faz parte da vida." },
-  { number: "02", title: "Estado e sociedade", text: "Instituições, políticas públicas e cidadania sem economês." },
-  { number: "03", title: "Universidade pública", text: "Caminhos, possibilidades e pertencimento para aproximar estudantes da Unicamp." },
+const activities = [
+  { number: "01", title: "Aulas de Educação Financeira", text: "Conceitos básicos de educação financeira, com atenção à poupança e ao controle de gastos no cotidiano." },
+  { number: "02", title: "Clube de Leitura", text: "Um espaço para conhecer e discutir conceitos econômicos que vão além das aulas de educação financeira." },
+  { number: "03", title: "Aulas Especiais e Visitas", text: "Encontros que aproximam estudantes dos debates atuais e da vida na universidade." },
+  { number: "04", title: "Instagram", text: "Conteúdos para levar a conversa sobre economia a mais pessoas.", href: "https://www.instagram.com/ene.unicamp/" },
+  { number: "05", title: "Projeto Cartilha", text: "Material físico e digital de fácil acesso para apoiar a reflexão sobre economia, inclusive em sala de aula." },
+];
+
+const impact = [
+  { value: "25+", label: "Membros na equipe" },
+  { value: "19", label: "Edições do Clube de Leitura" },
+  { value: "50+", label: "Cartilhas distribuídas" },
+  { value: "14 mil+", label: "Contas alcançadas" },
+  { value: "~4 mil", label: "Seguidores" },
+  { value: "2", label: "Escolas atendidas" },
 ];
 
 const initialProducts = [
@@ -49,7 +60,8 @@ export default function Home() {
         <button className="menu-button" aria-label="Abrir menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><span /><span /></button>
         <nav className={menuOpen ? "nav-links is-open" : "nav-links"} aria-label="Navegação principal">
           <a href="#sobre" onClick={() => setMenuOpen(false)}>O projeto</a>
-          <a href="#projeto" onClick={() => setMenuOpen(false)}>Projeto</a>
+          <a href="#projeto" onClick={() => setMenuOpen(false)}>Atuação</a>
+          <a href="#impacto" onClick={() => setMenuOpen(false)}>Impacto</a>
           <a href="#equipes" onClick={() => setMenuOpen(false)}>Equipes</a>
           <a href="#eventos" onClick={() => setMenuOpen(false)}>Eventos</a>
           <a className="nav-cta" href="#parceria" onClick={() => setMenuOpen(false)}>Leve o EnE à sua escola <span>↗</span></a>
@@ -62,7 +74,7 @@ export default function Home() {
           <h1>Economia que educa.<br /><em className="scribble-target">Educação que transforma.<i className="scribble-ring" aria-hidden="true" /></em></h1>
           <p className="hero-lead">Pela democratização do acesso ao conhecimento e à universidade pública.</p>
           <div className="hero-actions">
-            <a className="button button--primary" href="#como-funciona">Conheça o projeto <span>↓</span></a>
+            <a className="button button--primary" href="#projeto">Conheça o projeto <span>↓</span></a>
             <a className="text-link" href="https://www.instagram.com/ene.unicamp/" target="_blank" rel="noreferrer">Acompanhe no Instagram ↗</a>
           </div>
         </div>
@@ -85,18 +97,24 @@ export default function Home() {
 
       <section className="method" id="projeto">
         <div className="method-heading" data-reveal>
-          <p className="section-index section-index--light">[ 02 | COMO FUNCIONA ]</p>
-          <h2>Da universidade<br /><i>para a sala de aula.</i></h2>
-          <p>Encontros feitos para provocar perguntas e construir respostas em conjunto.</p>
+          <p className="section-index section-index--light">[ 02 | O QUE FAZEMOS ]</p>
+          <h2>Eixos de <i>atuação.</i></h2>
+          <p>Educação econômica em diferentes formatos, dentro e fora da sala de aula.</p>
         </div>
-        <div className="lesson-grid">
-          {lessons.map((lesson) => <article className="lesson-card" key={lesson.number} data-reveal><span>{lesson.number}</span><div className="lesson-placeholder"><i /><i /><i /></div><h3>{lesson.title}</h3><p>{lesson.text}</p><b>Explorar tema →</b></article>)}
+        <div className="activity-grid">
+          {activities.map((activity) => <article className="activity-card" key={activity.number} data-reveal><span>{activity.number}</span><h3>{activity.title}</h3><p>{activity.text}</p>{activity.href && <a href={activity.href} target="_blank" rel="noreferrer">Ver no Instagram ↗</a>}</article>)}
         </div>
       </section>
 
-      <section className="impact" id="conteudos" data-reveal>
-        <p className="section-index">[ 03 | NOSSO NORTE ]</p>
-        <blockquote>“Democratizar o acesso ao conhecimento e à universidade pública.”</blockquote>
+      <section className="impact" id="impacto">
+        <div className="impact-heading" data-reveal>
+          <p className="section-index section-index--light">[ 03 | NOSSO IMPACTO ]</p>
+          <h2>Transformando números em <em>cidadania.</em></h2>
+          <p>Resultados consolidados em 2023 que mostram o alcance das nossas atividades de educação econômica.</p>
+        </div>
+        <div className="impact-grid">
+          {impact.map((item) => <article key={item.label} data-reveal><strong>{item.value}</strong><span>{item.label}</span></article>)}
+        </div>
       </section>
 
       <section className="store" id="produtos">
@@ -124,11 +142,13 @@ export default function Home() {
         <div className="partnership-art"><ProjectLogo /></div>
       </section>
 
-      <footer>
-        <div className="footer-brand"><a className="brand brand--footer brand--official" href="#inicio"><ProjectLogo /></a><p>Pela democratização do acesso ao conhecimento e à universidade pública.</p></div>
-        <div className="footer-institutions"><span>PROJETO DE EXTENSÃO DO</span><div className="institutional-logos" aria-label="Realização"><img src="/unicamp-white.gif" alt="Universidade Estadual de Campinas" /><img src="/ie-white.png" alt="Instituto de Economia da Unicamp" /></div></div>
-        <div className="footer-social"><span>ACOMPANHE</span><a href="https://www.instagram.com/ene.unicamp/" target="_blank" rel="noreferrer">Instagram ↗</a></div>
-        <span className="footer-copy">© {new Date().getFullYear()} EnE</span>
+      <footer className="site-footer">
+        <div className="footer-main">
+          <div className="footer-brand"><a className="brand brand--footer brand--official" href="#inicio"><ProjectLogo /></a><p>Projeto de extensão universitária do Instituto de Economia da Unicamp.</p></div>
+          <nav className="footer-links" aria-label="Links rápidos"><h2>Links rápidos</h2><a href="#sobre">Sobre</a><a href="#projeto">Atuação</a><a href="#impacto">Impacto</a><a href="#eventos">Eventos</a><a href="#parceria">Contato</a></nav>
+          <div className="footer-institutions"><span>REALIZAÇÃO</span><div className="institutional-logos" aria-label="Realização"><img src="/unicamp-white.gif" alt="Universidade Estadual de Campinas" /><img src="/ie-white.png" alt="Instituto de Economia da Unicamp" /></div></div>
+        </div>
+        <div className="footer-bottom"><span>© {new Date().getFullYear()} Economia nas Escolas</span><a href="https://www.instagram.com/ene.unicamp/" target="_blank" rel="noreferrer">Instagram ↗</a></div>
       </footer>
     </main>
   );
