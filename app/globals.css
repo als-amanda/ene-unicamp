@@ -223,3 +223,11 @@ html{scroll-padding-top:86px}
 .contact-details .contact-icon{color:var(--orange)}
 @media(max-width:900px){.contact{padding:70px clamp(24px,6vw,70px)}.contact-card{grid-template-columns:1fr}.contact-info,.contact-form{padding:36px}.institutional-support-logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.contact{padding:58px 20px}.contact-card{border-radius:18px}.contact-info,.contact-form{padding:28px 22px}.contact h2{font-size:34px}.contact-form-row{grid-template-columns:1fr;gap:0}.contact-intro{font-size:14px}.contact-details{gap:22px}.contact-icon{width:42px;height:42px}.contact-form h3{font-size:29px}.institutional-support-logos{grid-template-columns:1fr}.support-logo{min-height:180px}.support-logo--proec{grid-column:auto}}
+
+/* Textos completos das áreas */
+.inside-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+.inside-grid article{min-height:0;padding:28px}
+.inside-grid h3{margin-top:30px}
+.inside-grid p{font-size:14px;line-height:1.7;margin:0;color:#575660}
+@media(max-width:900px){.inside-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.inside-grid{grid-template-columns:1fr}}

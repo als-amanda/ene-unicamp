@@ -10,6 +10,14 @@ const activities = [
   { number: "05", title: "Projeto Cartilha", text: "Material físico e digital de fácil acesso para apoiar a reflexão sobre economia, inclusive em sala de aula." },
 ];
 
+const teams = [
+  { name: "Administração", text: "A Administração é responsável por fazer o EnE acontecer no dia a dia, cuidando de toda a organização por trás das nossas ações. A área mantém o contato direto com as escolas parceiras, alinha as datas das visitas e monta a agenda de aulas e o calendário geral do projeto. O objetivo central é garantir que tudo esteja sempre no lugar certo e na hora certa, conectando a equipe às salas de aula de forma simples e organizada para que o projeto chegue a cada vez mais estudantes." },
+  { name: "Conteúdo", text: "A área de Conteúdo é responsável pela produção das aulas a serem oferecidas nas escolas e de seus slides. Nosso objetivo é traduzir conceitos complexos e avançados de economia, vistos na graduação, em explicações mais claras e acessíveis. Buscamos, então, atuar como a ponte entre o ensino superior e a educação básica através da democratização desse conhecimento restrito a muitos jovens brasileiros, ampliando suas possibilidades de compreender melhor o mundo e construir o futuro." },
+  { name: "Marketing", text: "O Marketing é responsável pela identidade do EnE, zelando por sua imagem. Por meio das redes sociais, a área atua na divulgação do projeto e na produção de conteúdos voltados à educação econômica e à aproximação entre a universidade e a sociedade. O objetivo central passa a ser traduzir esses conhecimentos para uma linguagem didática, acessível e próxima do cotidiano das pessoas, ampliando o alcance do projeto." },
+  { name: "Financeiro", text: "O financeiro é a área responsável pela captação e gestão do orçamento do ENE. Dado que, atualmente, o projeto apenas utiliza recursos vindos de editais da Unicamp, a área fica responsável por realizar o planejamento orçamentário anual, o ciclo de reembolsos das despesas feitas pelos membros, e a prestação de contas, garantindo que as atividades educacionais desenvolvidas pelo ENE sejam cumpridas em conformidade com as diretrizes da universidade e o estatuto social do projeto." },
+  { name: "Recursos Humanos", text: "A área de Recursos Humanos (RH) é responsável pela seleção, integração e acompanhamento dos membros do ENE. Nosso objetivo é promover um ambiente acolhedor, colaborativo e motivador, incentivando o desenvolvimento individual e coletivo. Para isso, organizamos processos seletivos, realizamos avaliações por meio do feedback 360° e promovemos eventos de integração e dinâmicas em grupo. Buscamos, assim, fortalecer os vínculos entre os integrantes e garantir que todos se sintam valorizados e parte essencial do projeto." },
+];
+
 function ProjectLogo({ compact = false }: { compact?: boolean }) {
   return <img className={`project-logo ${compact ? "project-logo--compact" : ""}`} src="/ene-logo.png" alt="EnE, Economia nas Escolas" />;
 }
@@ -119,7 +127,7 @@ export default function Home() {
 
       <section className="inside" id="equipes">
         <div className="inside-heading" data-reveal><p className="section-index">[ 03 | EQUIPES ]</p><h2>EnE por dentro.</h2><p>O projeto nasceu de uma assembleia estudantil em 2018 e é construído coletivamente por diferentes áreas.</p></div>
-        <div className="inside-grid">{["Administração","Conteúdo","Marketing","Financeiro","Recursos Humanos"].map((team, index) => <article key={team} data-reveal><span>0{index + 1}</span><h3>{team}</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Em breve, conheça as pessoas e atividades desta equipe.</p></article>)}</div>
+        <div className="inside-grid">{teams.map((team, index) => <article key={team.name} data-reveal><span>0{index + 1}</span><h3>{team.name}</h3><p>{team.text}</p></article>)}</div>
       </section>
 
       <section className="school" id="escolas">
