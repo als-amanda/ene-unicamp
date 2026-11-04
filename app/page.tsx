@@ -102,9 +102,14 @@ export default function Home() {
           <p className="section-index">[ 01 | SOBRE O ENE ]</p>
           <h2>Nossa missão é democratizar a <span>educação econômica.</span></h2>
         </div>
+        <div className="about-story" data-reveal>
+          <div className="about-story-copy">
+            <p>O <strong>Economia nas Escolas (EnE)</strong> é um projeto de extensão vinculado ao Instituto de Economia da Universidade Estadual de Campinas (UNICAMP), criado com o propósito de aproximar o conhecimento econômico da sociedade de forma acessível, prática e inclusiva.</p>
+            <p>Acreditamos que compreender conceitos econômicos é fundamental para a formação de cidadãos mais conscientes e preparados para interpretar os desafios do mundo contemporâneo. Por isso, desenvolvemos atividades voltadas à educação econômica por meio de ações em escolas públicas, palestras, cursos, produção de materiais didáticos e conteúdos informativos para diferentes públicos.</p>
+          </div>
+          <figure className="about-photo"><img src="/ene-equipe.jpg" alt="Integrantes do projeto EnE reunidos em uma atividade na Unicamp" loading="lazy" /></figure>
+        </div>
         <div className="about-copy" data-reveal>
-          <p>O <strong>Economia nas Escolas (EnE)</strong> é um projeto de extensão vinculado ao Instituto de Economia da Universidade Estadual de Campinas (UNICAMP), criado com o propósito de aproximar o conhecimento econômico da sociedade de forma acessível, prática e inclusiva.</p>
-          <p>Acreditamos que compreender conceitos econômicos é fundamental para a formação de cidadãos mais conscientes e preparados para interpretar os desafios do mundo contemporâneo. Por isso, desenvolvemos atividades voltadas à educação econômica por meio de ações em escolas públicas, palestras, cursos, produção de materiais didáticos e conteúdos informativos para diferentes públicos.</p>
           <p>Nossa atuação é guiada pela convicção de que o conhecimento deve ultrapassar os limites da universidade e contribuir para a transformação social. Buscamos construir pontes entre o ambiente acadêmico e a comunidade, promovendo espaços de aprendizado, diálogo e reflexão sobre temas econômicos presentes no cotidiano.</p>
           <p>Mais do que ensinar economia, buscamos despertar o interesse pelo pensamento crítico e incentivar uma compreensão mais ampla das questões econômicas que influenciam a vida das pessoas.</p>
         </div>
