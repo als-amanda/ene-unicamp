@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const activities = [
   { number: "01", title: "Aulas de Educação Financeira", text: "Conceitos básicos de educação financeira, com atenção à poupança e ao controle de gastos no cotidiano." },
@@ -11,11 +11,11 @@ const activities = [
 ];
 
 const teams = [
-  { name: "Administração", text: "A Administração é responsável por fazer o EnE acontecer no dia a dia, cuidando de toda a organização por trás das nossas ações. A área mantém o contato direto com as escolas parceiras, alinha as datas das visitas e monta a agenda de aulas e o calendário geral do projeto. O objetivo central é garantir que tudo esteja sempre no lugar certo e na hora certa, conectando a equipe às salas de aula de forma simples e organizada para que o projeto chegue a cada vez mais estudantes." },
-  { name: "Conteúdo", text: "A área de Conteúdo é responsável pela produção das aulas a serem oferecidas nas escolas e de seus slides. Nosso objetivo é traduzir conceitos complexos e avançados de economia, vistos na graduação, em explicações mais claras e acessíveis. Buscamos, então, atuar como a ponte entre o ensino superior e a educação básica através da democratização desse conhecimento restrito a muitos jovens brasileiros, ampliando suas possibilidades de compreender melhor o mundo e construir o futuro." },
-  { name: "Marketing", text: "O Marketing é responsável pela identidade do EnE, zelando por sua imagem. Por meio das redes sociais, a área atua na divulgação do projeto e na produção de conteúdos voltados à educação econômica e à aproximação entre a universidade e a sociedade. O objetivo central passa a ser traduzir esses conhecimentos para uma linguagem didática, acessível e próxima do cotidiano das pessoas, ampliando o alcance do projeto." },
-  { name: "Financeiro", text: "O financeiro é a área responsável pela captação e gestão do orçamento do ENE. Dado que, atualmente, o projeto apenas utiliza recursos vindos de editais da Unicamp, a área fica responsável por realizar o planejamento orçamentário anual, o ciclo de reembolsos das despesas feitas pelos membros, e a prestação de contas, garantindo que as atividades educacionais desenvolvidas pelo ENE sejam cumpridas em conformidade com as diretrizes da universidade e o estatuto social do projeto." },
-  { name: "Recursos Humanos", text: "A área de Recursos Humanos (RH) é responsável pela seleção, integração e acompanhamento dos membros do ENE. Nosso objetivo é promover um ambiente acolhedor, colaborativo e motivador, incentivando o desenvolvimento individual e coletivo. Para isso, organizamos processos seletivos, realizamos avaliações por meio do feedback 360° e promovemos eventos de integração e dinâmicas em grupo. Buscamos, assim, fortalecer os vínculos entre os integrantes e garantir que todos se sintam valorizados e parte essencial do projeto." },
+  { name: "Administração", summary: "Organiza as ações, as escolas parceiras e o calendário do projeto.", text: "A Administração é responsável por fazer o EnE acontecer no dia a dia, cuidando de toda a organização por trás das nossas ações. A área mantém o contato direto com as escolas parceiras, alinha as datas das visitas e monta a agenda de aulas e o calendário geral do projeto. O objetivo central é garantir que tudo esteja sempre no lugar certo e na hora certa, conectando a equipe às salas de aula de forma simples e organizada para que o projeto chegue a cada vez mais estudantes." },
+  { name: "Conteúdo", summary: "Transforma conceitos de economia em aulas e materiais acessíveis.", text: "A área de Conteúdo é responsável pela produção das aulas a serem oferecidas nas escolas e de seus slides. Nosso objetivo é traduzir conceitos complexos e avançados de economia, vistos na graduação, em explicações mais claras e acessíveis. Buscamos, então, atuar como a ponte entre o ensino superior e a educação básica através da democratização desse conhecimento restrito a muitos jovens brasileiros, ampliando suas possibilidades de compreender melhor o mundo e construir o futuro." },
+  { name: "Marketing", summary: "Cuida da identidade do EnE e aproxima o projeto da sociedade.", text: "O Marketing é responsável pela identidade do EnE, zelando por sua imagem. Por meio das redes sociais, a área atua na divulgação do projeto e na produção de conteúdos voltados à educação econômica e à aproximação entre a universidade e a sociedade. O objetivo central passa a ser traduzir esses conhecimentos para uma linguagem didática, acessível e próxima do cotidiano das pessoas, ampliando o alcance do projeto." },
+  { name: "Financeiro", summary: "Planeja o orçamento, os reembolsos e a prestação de contas.", text: "O financeiro é a área responsável pela captação e gestão do orçamento do ENE. Dado que, atualmente, o projeto apenas utiliza recursos vindos de editais da Unicamp, a área fica responsável por realizar o planejamento orçamentário anual, o ciclo de reembolsos das despesas feitas pelos membros, e a prestação de contas, garantindo que as atividades educacionais desenvolvidas pelo ENE sejam cumpridas em conformidade com as diretrizes da universidade e o estatuto social do projeto." },
+  { name: "Recursos Humanos", summary: "Acompanha a jornada dos membros e fortalece o trabalho em equipe.", text: "A área de Recursos Humanos (RH) é responsável pela seleção, integração e acompanhamento dos membros do ENE. Nosso objetivo é promover um ambiente acolhedor, colaborativo e motivador, incentivando o desenvolvimento individual e coletivo. Para isso, organizamos processos seletivos, realizamos avaliações por meio do feedback 360° e promovemos eventos de integração e dinâmicas em grupo. Buscamos, assim, fortalecer os vínculos entre os integrantes e garantir que todos se sintam valorizados e parte essencial do projeto." },
 ];
 
 function ProjectLogo({ compact = false }: { compact?: boolean }) {
@@ -44,6 +44,13 @@ function ContactIcon({ kind }: { kind: "email" | "instagram" | "location" }) {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const teamsTrack = useRef<HTMLDivElement>(null);
+
+  function moveTeams(direction: number) {
+    if (!teamsTrack.current) return;
+    const card = teamsTrack.current.querySelector<HTMLElement>(".team-card");
+    teamsTrack.current.scrollBy({ left: direction * ((card?.offsetWidth || 300) + 18), behavior: "smooth" });
+  }
 
   useEffect(() => {
     const reveal = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")), { threshold: 0.15 });
@@ -90,9 +97,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-art" aria-label="Símbolo geométrico inspirado no guará da identidade EnE">
-          <div className="orbit orbit--one" /><div className="orbit orbit--two" />
           <ProjectMark />
-          <span className="hero-note">Conhecimento que<br />muda de forma.</span>
         </div>
         <div className="ticker" aria-hidden="true"><div className="ticker-track">{[0, 1].map((group) => <div className="ticker-group" key={group}>{[0, 1, 2, 3].map((item) => <span key={item}>ECONOMIA • CIDADANIA • UNIVERSIDADE PÚBLICA • FUTURO •&nbsp;</span>)}</div>)}</div></div>
       </section>
@@ -132,7 +137,12 @@ export default function Home() {
 
       <section className="inside" id="equipes">
         <div className="inside-heading" data-reveal><p className="section-index">[ 03 | EQUIPES ]</p><h2>EnE por dentro.</h2><p>O projeto nasceu de uma assembleia estudantil em 2018 e é construído coletivamente por diferentes áreas.</p></div>
-        <div className="inside-grid">{teams.map((team, index) => <article key={team.name} data-reveal><span>0{index + 1}</span><h3>{team.name}</h3><p>{team.text}</p></article>)}</div>
+        <div className="teams-carousel">
+          <div className="teams-controls"><span>Conheça nossas áreas</span><div><button type="button" onClick={() => moveTeams(-1)} aria-label="Ver equipes anteriores">←</button><button type="button" onClick={() => moveTeams(1)} aria-label="Ver próximas equipes">→</button></div></div>
+          <div className="inside-grid" ref={teamsTrack} role="region" aria-roledescription="carrossel" aria-label="Equipes do EnE">
+            {teams.map((team, index) => <article className="team-card" key={team.name} data-reveal><span className="team-number">0{index + 1} <i /></span><h3>{team.name}</h3><p className="team-summary">{team.summary}</p><details><summary>Conheça a equipe <span aria-hidden="true">＋</span></summary><p>{team.text}</p></details></article>)}
+          </div>
+        </div>
       </section>
 
       <section className="school" id="escolas">
