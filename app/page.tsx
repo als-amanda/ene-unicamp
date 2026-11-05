@@ -3,11 +3,12 @@
 import { useEffect, useState } from "react";
 
 const activities = [
-  { number: "01", title: "Aulas de Educação Financeira", text: "Conceitos básicos de educação financeira, com atenção à poupança e ao controle de gastos no cotidiano." },
+  { number: "01", title: "Aulas de Economia", text: "Encontros sobre dinheiro, emprego, inflação, matemática financeira, história econômica do Brasil, economia política e Contemporaneidades." },
   { number: "02", title: "Clube de Leitura", text: "Um espaço para conhecer e discutir conceitos econômicos que vão além das aulas de educação financeira." },
   { number: "03", title: "Aulas Especiais e Visitas", text: "Encontros que aproximam estudantes dos debates atuais e da vida na universidade." },
   { number: "04", title: "Instagram", text: "Conteúdos para levar a conversa sobre economia a mais pessoas.", href: "https://www.instagram.com/ene.unicamp/" },
-  { number: "05", title: "Projeto Cartilha", text: "Material físico e digital de fácil acesso para apoiar a reflexão sobre economia, inclusive em sala de aula." },
+  { number: "05", title: "Canal no YouTube", text: "Acesse o canal do EnE e acompanhe os vídeos do projeto.", href: "https://www.youtube.com/@economianasescolas1037" },
+  { number: "06", title: "Projeto Cartilha", text: "Material físico e digital de fácil acesso para apoiar a reflexão sobre economia, inclusive em sala de aula." },
 ];
 
 const teams = [
@@ -98,6 +99,7 @@ export default function Home() {
           <a href="#sobre" onClick={() => setMenuOpen(false)}>Sobre</a>
           <a href="#projeto" onClick={() => setMenuOpen(false)}>Atuação</a>
           <a href="#equipes" onClick={() => setMenuOpen(false)}>Equipes</a>
+          <a href="#noticias" onClick={() => setMenuOpen(false)}>Na mídia</a>
           <a href="#escolas" onClick={() => setMenuOpen(false)}>Para escolas</a>
           <a href="#contato" onClick={() => setMenuOpen(false)}>Contato</a>
           <a href="#apoio" onClick={() => setMenuOpen(false)}>Apoio</a>
@@ -150,7 +152,7 @@ export default function Home() {
           <p>Educação econômica em diferentes formatos, dentro e fora da sala de aula.</p>
         </div>
         <div className="activity-grid">
-          {activities.map((activity) => <article className="activity-card" key={activity.number} data-reveal><span>{activity.number}</span><h3>{activity.title}</h3><p>{activity.text}</p>{activity.href && <a href={activity.href} target="_blank" rel="noreferrer">Ver no Instagram ↗</a>}</article>)}
+          {activities.map((activity) => <article className="activity-card" key={activity.number} data-reveal><span>{activity.number}</span><h3>{activity.title}</h3><p>{activity.text}</p>{activity.href && <a href={activity.href} target="_blank" rel="noreferrer">{activity.title === "Instagram" ? "Ver no Instagram" : "Acessar o canal"} ↗</a>}</article>)}
         </div>
       </section>
 
@@ -162,8 +164,30 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="news" id="noticias" aria-labelledby="news-title">
+        <div className="news-heading" data-reveal>
+          <p className="section-index">[ 04 | NA MÍDIA ]</p>
+          <h2 id="news-title">O EnE na <span>imprensa.</span></h2>
+          <p>Conheça algumas histórias e reconhecimentos do projeto publicados pela Unicamp.</p>
+        </div>
+        <div className="news-grid">
+          <article className="news-card" data-reveal>
+            <div className="news-card-meta"><span>Instituto de Economia · Unicamp</span><span className="news-year">Edital PEX</span></div>
+            <h3>“Economia nas Escolas” é selecionado entre projetos de extensão da Unicamp</h3>
+            <p>Uma matéria sobre a seleção do EnE no edital de extensão e o trabalho de aproximar estudantes de escolas públicas da economia e da universidade.</p>
+            <a href="https://www.economia.unicamp.br/ext/projetos-de-extensao/economia-nas-escolas-e-selecionado-entre-projetos-de-extensao-da-unicamp" target="_blank" rel="noreferrer">Ler matéria <span aria-hidden="true">↗</span></a>
+          </article>
+          <article className="news-card" data-reveal>
+            <div className="news-card-meta"><span>ProEEC · Unicamp</span><span className="news-year">23 mai. 2025</span></div>
+            <h3>Projeto Economia nas Escolas abre portas para o ensino superior público</h3>
+            <p>A reportagem apresenta a trajetória do EnE e como suas aulas aproximam jovens da escola pública da universidade.</p>
+            <a href="https://www.proec.unicamp.br/projeto-economia-nas-escolas-abre-portas-para-o-ensino-superior-publico/" target="_blank" rel="noreferrer">Ler matéria <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </section>
+
       <section className="school" id="escolas">
-        <div className="school-heading" data-reveal><p className="section-index section-index--light">[ 04 | PARA ESCOLAS ]</p><h2>Como levar o EnE<br />pra sua escola?</h2></div>
+        <div className="school-heading" data-reveal><p className="section-index section-index--light">[ 05 | PARA ESCOLAS ]</p><h2>Como levar o EnE<br />pra sua escola?</h2></div>
         <div className="school-steps">
           <article data-reveal><span className="school-step-number">01</span><p>Geralmente, somos nós que entramos em contato com escolas públicas da região. No entanto, <strong>sempre estamos abertos para novas oportunidades!</strong></p><p>Se você é <strong>gestor, professor e/ou funcionário</strong> de alguma <strong>escola pública</strong> de Campinas e região, basta entrar em contato por aqui e agendar um bate-papo!</p></article>
           <article data-reveal><span className="school-step-number">02</span><p>No bate-papo, poderemos entender a <strong>realidade da sua escola.</strong> Isto é:</p><ul><li>Quais disciplinas são mais necessárias?</li><li>Quantas e quais turmas participarão?</li><li>É uma ação pontual? Ou aulas recorrentes?</li></ul></article>
@@ -175,7 +199,7 @@ export default function Home() {
       <section className="contact" id="contato">
         <div className="contact-card" data-reveal>
           <div className="contact-info">
-            <p className="section-index section-index--light">[ 05 | CONTATO ]</p>
+            <p className="section-index section-index--light">[ 06 | CONTATO ]</p>
             <h2>Fale conosco</h2>
             <p className="contact-intro">Tem dúvidas, sugestões ou quer ser uma escola parceira? Entre em contato conosco.</p>
             <div className="contact-details">
@@ -212,7 +236,7 @@ export default function Home() {
       <footer className="site-footer">
         <div className="footer-main">
           <div className="footer-brand"><a className="brand brand--footer brand--official" href="#inicio"><ProjectLogo /></a><p>Projeto de extensão universitária do Instituto de Economia da Unicamp.</p></div>
-          <nav className="footer-links" aria-label="Links rápidos"><h2>Links rápidos</h2><a href="#sobre">Sobre</a><a href="#projeto">Atuação</a><a href="#equipes">Equipes</a><a href="#escolas">Para escolas</a><a href="#contato">Contato</a></nav>
+          <nav className="footer-links" aria-label="Links rápidos"><h2>Links rápidos</h2><a href="#sobre">Sobre</a><a href="#projeto">Atuação</a><a href="#equipes">Equipes</a><a href="#noticias">Na mídia</a><a href="#escolas">Para escolas</a><a href="#contato">Contato</a></nav>
           <div className="footer-institutions"><span>UNICAMP · INSTITUTO DE ECONOMIA</span></div>
         </div>
         <div className="footer-bottom"><span>© 2026 Economia nas Escolas. Todos os direitos reservados.</span></div>
